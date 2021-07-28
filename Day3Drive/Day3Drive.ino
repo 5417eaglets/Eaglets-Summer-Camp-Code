@@ -25,8 +25,14 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  turnRight();
-  turnLeft();
+  if(digitalRead(Lswitch)==HIGH){
+    turnLeft();
+    turnRight();
+  } 
+  else{
+    driveForward(150);
+  }
+
 }
 
 void turnRight(){
