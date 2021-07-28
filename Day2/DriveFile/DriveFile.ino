@@ -3,8 +3,8 @@
 #define Lswitch 14
 
 // —————————————————————————  Motors
-int motorLeft[] = {16, 17, 10};
-int motorRight[] = {11, 12, 9};
+int motorRight[] = {16, 17, 10};
+int motorLeft[] = {11, 12, 9};
 
 void setup() {
   Serial.begin(9600);
