@@ -41,8 +41,6 @@ void loop() {
   else if(digitalRead(Lswitch) == HIGH && counter == 2)
   {
     turnRight();
-    driveForward(150);
-    delay(2000);
     driveForward(0);
     delay(100000000);
     counter++;
