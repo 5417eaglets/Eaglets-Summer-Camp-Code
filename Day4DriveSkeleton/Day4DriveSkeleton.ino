@@ -30,9 +30,9 @@ void loop() {
 // ------------------------- Functions made earlier
 void turnRight()
 {
-  driveLeftMotorForward(150);
+  driveLeftMotorForward(180);
   driveRightMotorForward(0);
-  delay(780);
+  delay(700);
 }
 
 void driveForward(int power){
