@@ -25,12 +25,32 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly: 
+  // sample code calling the functions; feel free to change it
+  if(digitalRead(Lswitch) == HIGH){
+    turnRight();
+    driveForward(150);
+    delay(500);
+    turnLeft();
+  }
+  else{
+    driveForward(150); // power between 0-255
+  }
 }
 
 // ------------------------- Functions made earlier
-void turnRight()
-{
-  driveLeftMotorForward(180);
+void turnLeft(){
+  driveBackward(150);
+  delay(700);
+  driveRightMotorForward(180); // number is between 0-255
+  driveLeftMotorForward(0);
+  delay(700);
+}
+
+void turnRight(){
+  // power always has to be between 0 - 255
+  driveBackward(150);
+  delay(700);
+  driveLeftMotorForward(180); // if you increase the turning power, decrease the amount of time you turn for
   driveRightMotorForward(0);
   delay(700);
 }
@@ -40,9 +60,9 @@ void driveForward(int power){
   driveRightMotorForward(power);
 }
 
-void driveBackward(int motorSpeed){
-  driveLeftMotorBackward(motorSpeed);
-  driveRightMotorBackward(motorSpeed);
+void driveBackward(int power){
+  driveLeftMotorBackward(power);
+  driveRightMotorBackward(power);
 }
 
 // ------------------------------ Pre-made drive functions
