@@ -6,8 +6,6 @@
 int motorRight[] = {16, 17, 10};
 int motorLeft[] = {11, 12, 9};
 
-int counter = 0;
-
 void setup() {
   Serial.begin(9600);
 
@@ -26,40 +24,33 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  driveForward(150);
-  if(digitalRead(Lswitch) == HIGH && counter == 0)
-  { 
+  // put your main code here, to run repeatedly: 
+  if(digitalRead(Lswitch) == HIGH){
+    turnRight();
+    driveForward(150);
+    delay(500);
     turnLeft();
-    counter++;
-  } 
-  else if(digitalRead(Lswitch) == HIGH && counter == 1)
-  {
-    turnRight();
-    counter++;
-  } 
-  else if(digitalRead(Lswitch) == HIGH && counter == 2)
-  {
-    turnRight();
-    driveForward(0);
-    delay(100000000);
-    counter++;
+  }
+  else{
+    driveForward(150); // power between 0-255
   }
 }
 
-void turnRight(){
+// ------------------------- Functions made earlier
+void turnLeft(){
   driveBackward(150);
-  delay(500);
-  driveLeftMotorForward(150);
-  driveRightMotorForward(0);
+  delay(700);
+  driveRightMotorForward(180); // number is between 0-255
+  driveLeftMotorForward(0);
   delay(700);
 }
 
-void turnLeft(){
+void turnRight(){
+  // power always has to be between 0 - 255
   driveBackward(150);
-  delay(500);
-  driveRightMotorForward(150);
-  driveLeftMotorForward(0);
+  delay(700);
+  driveLeftMotorForward(180); // if you increase the turning power, decrease the amount of time you turn for
+  driveRightMotorForward(0);
   delay(700);
 }
 
@@ -73,7 +64,7 @@ void driveBackward(int power){
   driveRightMotorBackward(power);
 }
 
-// ------------------------------Pre-Made Drive Functions
+// ------------------------------ Pre-made drive functions
 void driveLeftMotorForward(int power){
   analogWrite(motorLeft[2], power);
   digitalWrite(motorLeft[0], LOW);
