@@ -6,6 +6,8 @@
 int motorRight[] = {16, 17, 10};
 int motorLeft[] = {11, 12, 9};
 
+int counter = 0;
+
 void setup() {
   Serial.begin(9600);
 
@@ -25,15 +27,21 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly: 
-  if(digitalRead(Lswitch) == HIGH){
-    turnRight();
-    driveForward(150);
-    delay(500);
+  if(digitalRead(Lswitch) == LOW && counter < 2){
+    driveForward(200); 
+  }
+  else if(digitalRead(Lswitch) == HIGH && counter == 0){
+     turnRight();
+     counter++; 
+  }
+  else if(digitalRead(Lswitch) == HIGH && counter == 1){
     turnLeft();
+    counter++; // add 1 to our counter variable so that counter = 2
   }
-  else{
-    driveForward(150); // power between 0-255
+  else if(counter >= 2){
+    driveForward(0);
   }
+
 }
 
 // ------------------------- Functions made earlier
